@@ -1,0 +1,25 @@
+.tab {
+  align-items: center;
+  background: #A5A5A5;
+  border: 1px solid #E5E5E5;
+  border-radius: 75px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  font-size: 8px;
+  justify-items: center;
+  padding: 0 10px;
+  width: 90%;
+}
+
+.tab:hover {
+  border: 2px solid #3498DB;
+}
+
+img {
+  height: 20px;
+}
+
+p {
+  font-weight: bold;
+}

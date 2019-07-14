@@ -1,16 +1,16 @@
 import React from 'react';
+import CoWorkerTab from '../CoWorkerTab/CoWorkerTab';
 import './Dashboard.css';
 
 const Dashboard = ({ coWorkers, error }) => {
-  console.log(coWorkers)
+  const coWorkerTabs = coWorkers.map(coWorker => {
+    return <CoWorkerTab {...coWorker} key={coWorker.id} />
+  })
   return (
-    <>
-
-      <main>
-          {/* {error & error} */}
-
-      </main>     
-    </>
+    <section className="coworker-tabs">
+      {/* {error & error} */}
+      {coWorkerTabs}    
+    </section>     
   )
 }
 

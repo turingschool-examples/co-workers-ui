@@ -37,8 +37,10 @@ class App extends Component {
     const { coWorkers, error } = this.state;
     return (
       <div className="App">
-        <Form addCoWorker={this.addCoWorker} />
-        <Dashboard coWorkers={coWorkers} error={error} />
+        <main>
+          <Form addCoWorker={this.addCoWorker} />
+          <Dashboard coWorkers={coWorkers} error={error} />
+        </main>
         <Profile />
       </div>
     );
