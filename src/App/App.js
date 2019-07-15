@@ -19,8 +19,8 @@ class App extends Component {
     try {
       const coWorkers = await getCoWorkers();
       this.setState({ coWorkers });
-    } catch(error) {
-      this.setState({ error });
+    } catch({ message }) {
+      this.setState({ error: message });
     }
   }
 
@@ -29,8 +29,8 @@ class App extends Component {
       await createCoWorker(newCoWorker);
       const coWorkers = await getCoWorkers();
       this.setState({ coWorkers });
-    } catch(error) {
-      this.setState({ error });
+    } catch({ message }) {
+      this.setState({ error: message });
     }
   }
 
@@ -40,8 +40,8 @@ class App extends Component {
       await deleteCoWorker(id);
       const coWorkers = await getCoWorkers();
       this.setState({ coWorkers, selectedId: null });
-    } catch(error) {
-      this.setState({ error });
+    } catch({ message }) {
+      this.setState({ error: message });
     }
   }
 

@@ -12,7 +12,7 @@ const Dashboard = ({ coWorkers, error, removeCoWorker, selectUser }) => {
   })
   return (
     <section className="coworker-tabs">
-      {/* {error & error} */}
+      {error && <h2>{error}</h2>}
       {coWorkerTabs}    
     </section>     
   )
