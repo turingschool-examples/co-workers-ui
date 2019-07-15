@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
 import Form from '../Form/Form';
 import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
-import { getCoWorkers, createCoWorker, deleteCoWorker } from '../apiCalls';
+import { fetchCoWorkers } from '../thunks/fetchCoWorkers';
+import {createCoWorker, deleteCoWorker } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
@@ -16,18 +18,14 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    try {
-      const coWorkers = await getCoWorkers();
-      this.setState({ coWorkers });
-    } catch({ message }) {
-      this.setState({ error: message });
-    }
+    await this.props.fetchCoWorkers()
   }
 
   addCoWorker = async newCoWorker => {
+    const { fetchCoWorkers } = this.props;
     try {
       await createCoWorker(newCoWorker);
-      const coWorkers = await getCoWorkers();
+      const coWorkers = await fetchCoWorkers();
       this.setState({ coWorkers });
     } catch({ message }) {
       this.setState({ error: message });
@@ -38,7 +36,7 @@ class App extends Component {
     e.stopPropagation();
     try {
       await deleteCoWorker(id);
-      const coWorkers = await getCoWorkers();
+      const coWorkers = await fetchCoWorkers();
       this.setState({ coWorkers, selectedId: null });
     } catch({ message }) {
       this.setState({ error: message });
@@ -46,8 +44,7 @@ class App extends Component {
   }
 
   render() {
-    const { coWorkers, error } = this.state;
-    const { selectedId } = this.props;
+    const { coWorkers, selectedId, errorMsg } = this.props;
     const foundUser = coWorkers.find(coWorker => coWorker.id === selectedId);
     return (
       <div className="app">
@@ -55,7 +52,7 @@ class App extends Component {
         <main>
           <Dashboard 
             coWorkers={coWorkers} 
-            error={error} 
+            error={errorMsg} 
             removeCoWorker={this.removeCoWorker} 
           />
         <Profile selected={foundUser} />
@@ -65,8 +62,15 @@ class App extends Component {
   }
 }
 
-export const mapStateToProps = ({ selectedId }) => ({
-  selectedId
+export const mapStateToProps = ({ selectedId, isLoading, coWorkers, errorMsg }) => ({
+  selectedId,
+  isLoading,
+  coWorkers,
+  errorMsg
 })
 
-export default connect(mapStateToProps)(App);
+export const mapDispatchToProps = dispatch => (
+   bindActionCreators({fetchCoWorkers}, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
