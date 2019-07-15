@@ -34,10 +34,8 @@ class Form extends Component {
   render() {
     const { image, name, role, location } = this.state;
     return (
-      <>
-        <header>
-          <h1>coWorkers</h1>
-        </header>
+      <header>
+        <h1>coWorkers</h1>
         <form>
           <input 
             name="image"
@@ -67,7 +65,7 @@ class Form extends Component {
             Create New Co-Worker
           </button>
         </form>
-       </>
+       </header>
     )
   }
 }

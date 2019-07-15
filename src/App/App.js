@@ -10,6 +10,7 @@ class App extends Component {
     super();
     this.state = {
       coWorkers: [],
+      selectedId: null,
       error: ''
     }
   }
@@ -33,29 +34,36 @@ class App extends Component {
     }
   }
 
-  removeCoWorker = async id => {
+  removeCoWorker = async (e, id) => {
+    e.stopPropagation();
     try {
       await deleteCoWorker(id);
       const coWorkers = await getCoWorkers();
-      this.setState({ coWorkers });
+      this.setState({ coWorkers, selectedId: null });
     } catch(error) {
       this.setState({ error });
     }
   }
 
+  selectUser = id => {
+    this.setState({ selectedId: id});
+  }
+
   render() {
-    const { coWorkers, error } = this.state;
+    const { coWorkers, selectedId, error } = this.state;
+    const foundUser = coWorkers.find(coWorker => coWorker.id === selectedId);
     return (
-      <div className="App">
-        <main>
+      <div className="app">
           <Form addCoWorker={this.addCoWorker} />
+        <main>
           <Dashboard 
             coWorkers={coWorkers} 
             error={error} 
             removeCoWorker={this.removeCoWorker} 
+            selectUser={this.selectUser}
           />
+        <Profile selected={foundUser} />
         </main>
-        <Profile />
       </div>
     );
   }
