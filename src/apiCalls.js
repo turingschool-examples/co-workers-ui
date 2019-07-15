@@ -24,11 +24,29 @@ export const createCoWorker = async newCoWorker => {
   try {
     const response  = await fetch(url, options);
     if (!response.ok) {
-      throw new Error('Sorry.  Unable to create your new Co-Worker.');
+      throw new Error('Sorry.  Unable to create your new co-worker.');
     }
     const newCoWorkerId = await response.json();
     return newCoWorkerId;
   } catch(error) {
     throw new Error(error.message);
+  }
+}
+
+export const deleteCoWorker = async id => {
+  const url  = `http://localhost:3001/api/v1/coworkers/${id}`;
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error('There was a problem removing this co-worker.')
+    }
+  } catch(error) {
+    throw new Error(error.message)
   }
 }
