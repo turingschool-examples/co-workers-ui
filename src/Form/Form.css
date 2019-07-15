@@ -2,3 +2,36 @@ header {
   height: 20vh;
   width: 100%;
 }
+
+h1 {
+  height: 70%;
+  color: #3498DB;
+  padding: 30px;
+  font-size: 64px;
+}
+
+h1 span {
+  color: #E74C3C;
+}
+
+form {
+  display: flex;
+  height: 30%;
+}
+
+input, form button {
+  font-size: 20px;
+  width: 20%;
+}
+
+input {
+  border: 2px solid #A5A5A5;
+  padding-left: 10px;
+}
+
+form button {
+  border: 2px solid #3498DB;
+  background-color: #3498DB;
+  font-weight: bold;
+  color: #FFF;
+}

@@ -35,7 +35,7 @@ class Form extends Component {
     const { image, name, role, location } = this.state;
     return (
       <header>
-        <h1>coWorkers</h1>
+        <h1><span>co-</span>Workers</h1>
         <form>
           <input 
             name="image"

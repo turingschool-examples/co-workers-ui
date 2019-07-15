@@ -1,7 +1,9 @@
 aside {
   align-items: center;
+  border-left: 4px solid #A5A5A5;
   display: flex;
   flex-direction: column;
+  font-size: 32px;
   height: 80vh;
   justify-content: space-around;
   width: 40%;
@@ -11,8 +13,8 @@ aside {
   border: 2px solid #3498DB;
   border-radius: 50%;
   object-fit: cover;
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
 }
 
 span {
