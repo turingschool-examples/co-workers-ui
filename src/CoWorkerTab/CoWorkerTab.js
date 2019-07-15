@@ -1,4 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'; 
+import { connect } from 'react-redux';
+import { selectUser } from '../actions';
 import './CoWorkerTab.css'
 import online from '../assets/online.png'
 import offline from '../assets/offline.png';
@@ -17,4 +20,8 @@ const CoWorkerTab = ({ id, status, name, role, location, removeCoWorker, selectU
   )
 }
 
-export default CoWorkerTab
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({ selectUser }, dispatch)
+)
+
+export default connect(null, mapDispatchToProps)(CoWorkerTab)

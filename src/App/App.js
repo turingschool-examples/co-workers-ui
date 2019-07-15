@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Form from '../Form/Form';
 import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
@@ -45,12 +46,9 @@ class App extends Component {
     }
   }
 
-  selectUser = id => {
-    this.setState({ selectedId: id});
-  }
-
   render() {
-    const { coWorkers, selectedId, error } = this.state;
+    const { coWorkers, error } = this.state;
+    const { selectedId } = this.props;
     const foundUser = coWorkers.find(coWorker => coWorker.id === selectedId);
     return (
       <div className="app">
@@ -60,7 +58,6 @@ class App extends Component {
             coWorkers={coWorkers} 
             error={error} 
             removeCoWorker={this.removeCoWorker} 
-            selectUser={this.selectUser}
           />
         <Profile selected={foundUser} />
         </main>
@@ -69,4 +66,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = ({ selectedId }) => ({
+  selectedId
+})
+
+export default connect(mapStateToProps, null)(App);
