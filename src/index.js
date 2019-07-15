@@ -5,10 +5,11 @@ import './index.css';
 import { rootReducer } from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  composeWithDevTools()
 )
 
 ReactDOM.render(

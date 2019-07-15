@@ -11,7 +11,6 @@ class App extends Component {
     super();
     this.state = {
       coWorkers: [],
-      selectedId: null,
       error: ''
     }
   }
@@ -70,4 +69,4 @@ export const mapStateToProps = ({ selectedId }) => ({
   selectedId
 })
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps)(App);
