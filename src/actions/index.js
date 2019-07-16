@@ -13,7 +13,7 @@ export const hasErrored = errorMsg => ({
   errorMsg
 });
 
-export const setCoWorkers = coWorkers => ({
-  type: 'SET_COWORKERS',
+export const getCoWorkers = coWorkers => ({
+  type: 'GET_COWORKERS',
   coWorkers
 })

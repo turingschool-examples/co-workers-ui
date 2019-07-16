@@ -1,4 +1,4 @@
-import { isLoading, hasErrored, setCoWorkers } from '../actions';
+import { isLoading, hasErrored, getCoWorkers } from '../actions';
 
 export const fetchCoWorkers = () => {
   return async dispatch => {
@@ -11,7 +11,7 @@ export const fetchCoWorkers = () => {
       }
       const coWorkers= await response.json();
       dispatch(isLoading(false));
-      dispatch(setCoWorkers(coWorkers));
+      dispatch(getCoWorkers(coWorkers));
       return coWorkers 
     } catch(error) {
       dispatch(hasErrored(error.message))

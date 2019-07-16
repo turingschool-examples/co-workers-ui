@@ -18,7 +18,7 @@ export const hasErrored = (state = '', action) => {
 
 export const coWorkers = (state=[], action) => {
   switch(action.type) {
-    case 'SET_COWORKERS':
+    case 'GET_COWORKERS':
       return action.coWorkers;
     default:
       return state;
