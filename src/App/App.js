@@ -9,39 +9,39 @@ import {createCoWorker, deleteCoWorker } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      coWorkers: [],
-      error: ''
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     coWorkers: [],
+  //     error: ''
+  //   }
+  // }
 
   async componentDidMount() {
     await this.props.fetchCoWorkers()
   }
 
-  addCoWorker = async newCoWorker => {
-    const { fetchCoWorkers } = this.props;
-    try {
-      await createCoWorker(newCoWorker);
-      const coWorkers = await fetchCoWorkers();
-      this.setState({ coWorkers });
-    } catch({ message }) {
-      this.setState({ error: message });
-    }
-  }
+  // addCoWorker = async newCoWorker => {
+  //   const { fetchCoWorkers } = this.props;
+  //   try {
+  //     await createCoWorker(newCoWorker);
+  //     const coWorkers = await fetchCoWorkers();
+  //     this.setState({ coWorkers });
+  //   } catch({ message }) {
+  //     this.setState({ error: message });
+  //   }
+  // }
 
-  removeCoWorker = async (e, id) => {
-    e.stopPropagation();
-    try {
-      await deleteCoWorker(id);
-      const coWorkers = await fetchCoWorkers();
-      this.setState({ coWorkers, selectedId: null });
-    } catch({ message }) {
-      this.setState({ error: message });
-    }
-  }
+  // removeCoWorker = async (e, id) => {
+  //   e.stopPropagation();
+  //   try {
+  //     await deleteCoWorker(id);
+  //     const coWorkers = await fetchCoWorkers();
+  //     this.setState({ coWorkers, selectedId: null });
+  //   } catch({ message }) {
+  //     this.setState({ error: message });
+  //   }
+  // }
 
   render() {
     const { coWorkers, selectedId, errorMsg } = this.props;

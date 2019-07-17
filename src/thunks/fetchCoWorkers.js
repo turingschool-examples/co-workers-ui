@@ -14,6 +14,7 @@ export const fetchCoWorkers = () => {
       dispatch(getCoWorkers(coWorkers));
       return coWorkers 
     } catch(error) {
+      dispatch(isLoading(false));
       dispatch(hasErrored(error.message))
     }
   }
