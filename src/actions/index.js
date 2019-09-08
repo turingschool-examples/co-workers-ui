@@ -16,4 +16,14 @@ export const hasErrored = errorMsg => ({
 export const getCoWorkers = coWorkers => ({
   type: 'GET_COWORKERS',
   coWorkers
+});
+
+export const addCoWorker = coWorker => ({
+  type: 'ADD_COWORKER',
+  coWorker
+});
+
+export const removeCoWorker = id => ({
+  type: 'REMOVE_COWORKER',
+  id
 })

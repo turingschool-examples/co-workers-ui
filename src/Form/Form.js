@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { createCoWorker } from '../apiCalls';
+import { addCoWorker, isLoading, hasErrored } from '../actions';
 import './Form.css';
 
 class Form extends Component {
@@ -16,10 +20,19 @@ class Form extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  makeNewCoWorker = e => {
+  createCoWorker = async e => {
+    const { addCoWorker, isLoading, hasErrored } = this.props;
     e.preventDefault();
-    this.props.addCoWorker({ ...this.state, id: Date.now() });
-    this.clearInputs();
+    try {
+      isLoading(true);
+      const newCoWorkerId = await createCoWorker({ ...this.state, id: Date.now() })
+      addCoWorker({ ...this.state, id: newCoWorkerId })
+      isLoading(false);
+      this.clearInputs();
+    } catch({ message }) {
+      isLoading(false);
+      hasErrored(message)
+    }
   }
 
   clearInputs = () => {
@@ -61,7 +74,7 @@ class Form extends Component {
             placeholder="Location"
             onChange={this.updateForm}
           />
-          <button onClick={this.makeNewCoWorker}>
+          <button onClick={this.createCoWorker}>
             Create New Co-Worker
           </button>
         </form>
@@ -70,4 +83,12 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    isLoading,
+    hasErrored,
+    addCoWorker
+  }, dispatch)
+)
+
+export default connect(null, mapDispatchToProps)(Form);

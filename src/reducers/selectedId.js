@@ -1,4 +1,4 @@
-export const selectedReducer = (state=null, action) => {
+export const selectedId = (state=null, action) => {
   switch (action.type) {
     case 'SELECT_USER':
       return action.id

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import { selectedReducer } from './selectedReducer';
-import { isLoading, hasErrored, coWorkers } from './coWorkersReducer';
+import { selectedId } from './selectedId';
+import { isLoading } from './isLoading';
+import { errorMsg } from './errorMsg';
+import { coWorkers } from './coWorkers';
 
 export const rootReducer = combineReducers({
-  selectedId: selectedReducer,
+  selectedId,
   isLoading,
-  errorMsg: hasErrored,
+  errorMsg,
   coWorkers,
 });
