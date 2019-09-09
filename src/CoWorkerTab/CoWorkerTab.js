@@ -7,7 +7,7 @@ import online from '../assets/online.png'
 import offline from '../assets/offline.png';
 import deleteIcon from '../assets/delete.png';
 
-const CoWorkerTab = ({ id, status, name, role, location, removeCoWorker, selectUser }) => {
+export const CoWorkerTab = ({ id, status, name, role, location, removeCoWorker, selectUser }) => {
   const onlineStatus = status ? online : offline;
   return (
   <li className="tab" onClick={() => selectUser(id)}>

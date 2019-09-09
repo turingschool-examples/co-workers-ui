@@ -9,8 +9,8 @@ import { getCoWorkers, removeCoWorker, isLoading, hasErrored } from '../actions'
 
 import './App.css';
 
-class App extends Component {
-  componentDidMount = async() => {
+export class App extends Component {
+  componentDidMount = async () => {
     const { getCoWorkers, isLoading, hasErrored } = this.props;
     try {
       const coWorkers = await fetchCoWorkers();
