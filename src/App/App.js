@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../Form/Form';
 import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
-import { getCoWorkers, createCoWorker, deleteCoWorker } from '../apiCalls';
+import { fetchCoWorkers, createCoWorker, deleteCoWorker } from '../apiCalls';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const coWorkers = await getCoWorkers();
+      const coWorkers = await fetchCoWorkers();
       this.setState({ coWorkers });
     } catch({ message }) {
       this.setState({ error: message });
@@ -27,7 +27,7 @@ class App extends Component {
   addCoWorker = async newCoWorker => {
     try {
       await createCoWorker(newCoWorker);
-      const coWorkers = await getCoWorkers();
+      const coWorkers = await fetchCoWorkers();
       this.setState({ coWorkers });
     } catch({ message }) {
       this.setState({ error: message });
@@ -38,7 +38,7 @@ class App extends Component {
     e.stopPropagation();
     try {
       await deleteCoWorker(id);
-      const coWorkers = await getCoWorkers();
+      const coWorkers = await fetchCoWorkers();
       this.setState({ coWorkers, selectedId: null });
     } catch({ message }) {
       this.setState({ error: message });

@@ -1,4 +1,4 @@
-export const getCoWorkers = async () => {
+export const fetchCoWorkers = async () => {
   const url = 'http://localhost:3001/api/v1/coworkers'
   const response = await fetch(url);
   if (!response.ok) {
