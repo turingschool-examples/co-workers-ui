@@ -8,7 +8,7 @@ import { fetchCoWorkers, postCoWorker, deleteCoWorker } from '../apiCalls';
 import { setCoWorkers, updateLoading, hasErrored } from '../actions';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
   async componentDidMount() {
     const { setCoWorkers, updateLoading, hasErrored } = this.props;
     try {
