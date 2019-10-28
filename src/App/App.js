@@ -4,45 +4,51 @@ import { connect } from 'react-redux';
 import Form from '../Form/Form';
 import Dashboard from '../Dashboard/Dashboard';
 import Profile from '../Profile/Profile';
-import { fetchCoWorkers } from '../apiCalls';
-import { getCoWorkers, isLoading, hasErrored } from '../actions';
+import { fetchCoWorkers, postCoWorker, deleteCoWorker } from '../apiCalls';
+import { setCoWorkers, updateLoading, hasErrored } from '../actions';
 import './App.css';
 
 class App extends Component {
   async componentDidMount() {
-    const { getCoWorkers, isLoading, hasErrored } = this.props;
+    const { setCoWorkers, updateLoading, hasErrored } = this.props;
     try {
-      isLoading(true);
+      updateLoading(true);
       const coWorkers = await fetchCoWorkers();
-      isLoading(false);
-      getCoWorkers(coWorkers);
-    } catch (error) {
-      isLoading(false);
-      hasErrored(error.message);
+      updateLoading(false);
+      setCoWorkers(coWorkers);
+    } catch ({ message }) {
+      updateLoading(false);
+      hasErrored(message);
     }
   }
 
-  // addCoWorker = async newCoWorker => {
-  //   const { fetchCoWorkers } = this.props;
-  //   try {
-  //     await createCoWorker(newCoWorker);
-  //     const coWorkers = await fetchCoWorkers();
-  //     this.setState({ coWorkers });
-  //   } catch({ message }) {
-  //     this.setState({ error: message });
-  //   }
-  // }
+  addCoWorker = async newCoWorker => {
+    const { setCoWorkers, updateLoading, hasErrored } = this.props;
+    try {
+      updateLoading(true);
+      await postCoWorker(newCoWorker);
+      const coWorkers = await fetchCoWorkers();
+      updateLoading(false);
+      setCoWorkers(coWorkers);
+    } catch({ message }) {
+      updateLoading(false);
+      hasErrored(message);
+    }
+  }
 
-  // removeCoWorker = async (e, id) => {
-  //   e.stopPropagation();
-  //   try {
-  //     await deleteCoWorker(id);
-  //     const coWorkers = await fetchCoWorkers();
-  //     this.setState({ coWorkers, selectedId: null });
-  //   } catch({ message }) {
-  //     this.setState({ error: message });
-  //   }
-  // }
+  removeCoWorker = async (e, id) => {
+    e.stopPropagation();
+    const { updateLoading, setCoWorkers, hasErrored } = this.props;
+    try {
+      updateLoading(true);
+      const coWorkers = await deleteCoWorker(id);
+      updateLoading(false);
+      setCoWorkers(coWorkers);
+    } catch({ message }) {
+      updateLoading(false);
+      hasErrored(message);
+    }
+  }
 
   render() {
     const { coWorkers, selectedId, errorMsg } = this.props;
@@ -72,8 +78,8 @@ export const mapStateToProps = ({ selectedId, isLoading, coWorkers, errorMsg }) 
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    getCoWorkers,
-    isLoading,
+    setCoWorkers,
+    updateLoading,
     hasErrored
   }, dispatch)
 )

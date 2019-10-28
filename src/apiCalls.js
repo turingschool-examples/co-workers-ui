@@ -8,7 +8,7 @@ export const fetchCoWorkers = async () => {
   return coWorkers
 }
 
-export const createCoWorker = async newCoWorker => {
+export const postCoWorker = async newCoWorker => {
   const url = 'http://localhost:3001/api/v1/coworkers';
   const options = {
     method: 'POST',
@@ -37,4 +37,6 @@ export const deleteCoWorker = async id => {
   if (!response.ok) {
     throw new Error('There was a problem removing this co-worker.')
   }
+  const remainingCoWorkers = await response.json();
+  return remainingCoWorkers;
 }

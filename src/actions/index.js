@@ -3,7 +3,7 @@ export const selectUser = id => ({
   id
 })
 
-export const isLoading = isLoading => ({
+export const updateLoading = isLoading => ({
   type: 'IS_LOADING',
   isLoading
 });
@@ -13,7 +13,7 @@ export const hasErrored = errorMsg => ({
   errorMsg
 });
 
-export const getCoWorkers = coWorkers => ({
-  type: 'GET_COWORKERS',
+export const setCoWorkers = coWorkers => ({
+  type: 'SET_COWORKERS',
   coWorkers
 })
