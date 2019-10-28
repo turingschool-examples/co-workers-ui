@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match the snapshot 1`] = `
+<div
+  className="app"
+>
+  <Form
+    addCoWorker={[Function]}
+  />
+  <main>
+    <Dashboard
+      coWorkers={
+        Array [
+          Object {
+            "id": 1,
+            "image": "https://image.unsplash.com/1",
+            "location": "Pennsylvania",
+            "name": "Miguel",
+            "role": "Owner",
+            "status": false,
+          },
+          Object {
+            "id": 2,
+            "image": "https://image.unsplash.com/2",
+            "location": "Colorado",
+            "name": "Hailie",
+            "role": "Teammate",
+            "status": true,
+          },
+        ]
+      }
+      error=""
+      removeCoWorker={[Function]}
+    />
+    <Profile
+      selected={
+        Object {
+          "id": 1,
+          "image": "https://image.unsplash.com/1",
+          "location": "Pennsylvania",
+          "name": "Miguel",
+          "role": "Owner",
+          "status": false,
+        }
+      }
+    />
+  </main>
+</div>
+`;
